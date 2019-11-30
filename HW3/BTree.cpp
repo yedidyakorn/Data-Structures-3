@@ -3,7 +3,7 @@
 #include <list>
 #include <vector>
 #include <functional>
-#include "BTRFull.cpp"
+#include "BTR.cpp"
 #include "Lending.h"
 
 using namespace std;
@@ -20,7 +20,7 @@ void main()
 	string str, str1, str2;
 	vector<Lending> keys;
 	Lending *p;
-
+	
 	cout << "\nChoose one of the following" << endl;
 	cout << "1: add a new lending" << endl;
 	cout << "2: return an item" << endl;

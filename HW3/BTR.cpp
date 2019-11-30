@@ -455,6 +455,7 @@ public:
 	void printAllKeys(BNode<T> *p, std::function<bool(const T&)>);
 	T* search(T x) { return search(root, x); }
 	T* search(BNode<T> *p, T x);
+	void printBetween(string k1, string k2);
 };
 
 
@@ -473,6 +474,7 @@ void BTree<T>::printAllKeys(BNode<T> *p, std::function<bool(const T&)> predicate
 template <typename T>
 void BTree<T>::deleteSubTree(BNode<T> *t)
 {
+
 }
 
 
