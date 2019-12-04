@@ -455,7 +455,6 @@ public:
 	void printAllKeys(BNode<T> *p, std::function<bool(const T&)>);
 	T* search(T x) { return search(root, x); }
 	T* search(BNode<T> *p, T x);
-	void printBetween(string k1, string k2);
 };
 
 
@@ -474,7 +473,25 @@ void BTree<T>::printAllKeys(BNode<T> *p, std::function<bool(const T&)> predicate
 template <typename T>
 void BTree<T>::deleteSubTree(BNode<T> *t)
 {
-
+	if (t->Son[0] != NULL)
+	{
+		for (int i = 0; i < t->nsons - 1; i++)
+		{
+			deleteSubTree(t->Son[i]);
+		}
+	}
+	//while (t->nkeys != 0)
+	//{
+	//	for (int i = 0; i < t->nkeys - 1; i++)
+	//	{
+	//		t->deleteVal(t->Key[i],);
+	//	}
+	//}
+	if(t->Son)
+		delete[] t->Son;
+	delete[] t->Key;
+	delete t;
+	return;
 }
 
 
@@ -482,6 +499,17 @@ void BTree<T>::deleteSubTree(BNode<T> *t)
 template <typename T>
 void BTree<T>::printSubTree(BNode<T> *t)
 {
+	if (t->nsons != 0)
+	{
+		for (int i = 0; i < t->nsons - 1; i++)
+		{
+			deleteSubTree(t->Son[i]);
+			if(t->nkeys>i)
+				cout << t->Key[i] << ",";
+		}
+	}
+	for (int i = 0; i < t->nkeys - 1; i++)
+		cout << t->Key[i] << ",";
 }
 
 
