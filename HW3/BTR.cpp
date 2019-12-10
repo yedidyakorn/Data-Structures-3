@@ -451,10 +451,13 @@ public:
 	void deleteTree() { deleteSubTree(root); }
 	void printSubTree(BNode<T> *t);
 	void printTree() { printSubTree(root); }
-	//void printAllKeys(std::function<bool(const T&)> predicate) { printAllKeys(root, predicate); }
-	//void printAllKeys(BNode<T> *p, std::function<bool(const T&)>);
+
 	T* search(T x) { return search(root, x); }
 	T* search(BNode<T> *p, T x);
+	BNode<T>* getNode(T x) { return getNode(root, x); }
+	BNode<T>* getNode(BNode<T> *p, T x);
+	void printBetween(T a, T b) { printBetween(root, a, b); }
+	void printBetween(BNode<T> *t, T a, T b);
 };
 
 
@@ -467,17 +470,44 @@ T* BTree<T>::search(BNode<T> *p, T x)
 	{
 		for (int i = 0; i < p->nsons - 1; i++)
 		{
-
-			return search(p->Son[i],x);
+			return   search(p->Son[i],x);
 		}
 	}
 }
 
+template<typename T>
+BNode<T>* BTree<T>::getNode(BNode<T> *p, T x)
+{
+	if (p->searchInNode(x))
+		return p;
+	if (p->nsons != 0)
+	{
+		for (int i = 0; i < p->nsons - 1; i++)
+		{
+			return   getNode(p->Son[i], x);
+		}
+	}
+	return nullptr;
+}
 
-//template <typename T>
-//void BTree<T>::printAllKeys(BNode<T> *p, std::function<bool(const T&)> predicate)
-//{
-//}
+template<typename T>
+void BTree<T>::printBetween(BNode<T> *t, T a, T b)
+{
+	//printSubTree(getNode(a));
+	if (t->nsons != 0)
+	{
+		for (int i = 0; i < t->nsons - 1; i++)
+		{
+			printBetween(t->Son[i],a,b);
+			if ((t->nkeys > i)&&(t->Key[i]>=a)&& (t->Key[i] <= b))
+				cout << t->Key[i] << ",";
+		}
+	}
+	for (int i = 0; i < t->nkeys - 1; i++)
+		if ((t->Key[i] >= a) && (t->Key[i] <= b))
+			cout << t->Key[i] << ",";
+}
+
 
 template <typename T>
 void BTree<T>::deleteSubTree(BNode<T> *t)
