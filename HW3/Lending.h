@@ -14,6 +14,7 @@ public:
 	Lending();
 	~Lending();
 	void set_date(string date) { _date = date; }
+	string getName() { return _name; }
 
 
 	bool operator == ( Lending& a);

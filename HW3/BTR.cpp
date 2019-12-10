@@ -454,8 +454,8 @@ public:
 
 	T* search(T x) { return search(root, x); }
 	T* search(BNode<T> *p, T x);
-	BNode<T>* getNode(T x) { return getNode(root, x); }
-	BNode<T>* getNode(BNode<T> *p, T x);
+	BNode<T>* printName(string name) { return printName(root, name); }
+	BNode<T>* printName(BNode<T> *p, string);
 	void printBetween(T a, T b) { printBetween(root, a, b); }
 	void printBetween(BNode<T> *t, T a, T b);
 };
@@ -476,24 +476,25 @@ T* BTree<T>::search(BNode<T> *p, T x)
 }
 
 template<typename T>
-BNode<T>* BTree<T>::getNode(BNode<T> *p, T x)
+BNode<T>* BTree<T>::printName(BNode<T> *t, string name)
 {
-	if (p->searchInNode(x))
-		return p;
-	if (p->nsons != 0)
+	if (t->nsons != 0)
 	{
-		for (int i = 0; i < p->nsons - 1; i++)
+		for (int i = 0; i < t->nsons - 1; i++)
 		{
-			return   getNode(p->Son[i], x);
+			printName(t->Son[i],name);
+			if ((t->nkeys > i) && (t->Key[i]->getName() == name))
+				cout << t->Key[i] << ",";
 		}
 	}
-	return nullptr;
+	for (int i = 0; i < t->nkeys - 1; i++)
+		if ((t->Key[i]->getName() == name))
+			cout << t->Key[i] << ",";
 }
 
 template<typename T>
 void BTree<T>::printBetween(BNode<T> *t, T a, T b)
 {
-	//printSubTree(getNode(a));
 	if (t->nsons != 0)
 	{
 		for (int i = 0; i < t->nsons - 1; i++)
