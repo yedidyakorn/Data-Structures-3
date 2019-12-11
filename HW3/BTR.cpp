@@ -433,6 +433,7 @@ void BNode<T>::deleteVal(T x, bool searchForSuccessor, T&successorFound, bool& h
 
 
 
+
 //*********************************************************************************************
 //*********************************************************************************************
 
@@ -520,13 +521,7 @@ void BTree<T>::deleteSubTree(BNode<T> *t)
 			deleteSubTree(t->Son[i]);
 		}
 	}
-	//while (t->nkeys != 0)
-	//{
-	//	for (int i = 0; i < t->nkeys - 1; i++)
-	//	{
-	//		t->deleteVal(t->Key[i],);
-	//	}
-	//}
+
 	if(t->Son)
 		delete[] t->Son;
 	delete[] t->Key;

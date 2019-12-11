@@ -25,7 +25,7 @@ public:
 	bool operator >= ( Lending& a) { return !(a < *this); }
 
 
-	friend istream& operator>>(istream& is, Lending& l)
+	friend istream& operator >>(istream& is, Lending& l)
 	{
 		cout << "enter id name date item ";
 		is >> l._id >> l._name >> l._date >> l._code;
@@ -33,7 +33,7 @@ public:
 	}
 
 
-	friend ostream& operator<<(ostream& os, Lending& l)
+	friend ostream& operator <<(ostream& os, Lending& l)
 	{
 		os << endl << "Lending details: id: " << l._id << " name: " << l._name << " date: " << l._date << " item: " << l._code << endl;
 		return os;

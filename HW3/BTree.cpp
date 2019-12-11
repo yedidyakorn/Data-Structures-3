@@ -9,7 +9,7 @@
 using namespace std;
 
 //=============================================================
-void main()
+int main()
 {
 
 	char ch;
@@ -59,5 +59,5 @@ void main()
 		default: cout << "error ";  break;
 		}//switch
 	} while (ch != '5');
-
+	return 0;
 }
