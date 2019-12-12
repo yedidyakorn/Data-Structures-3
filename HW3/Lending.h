@@ -17,12 +17,12 @@ public:
 	string getName() { return _name; }
 
 
-	bool operator == ( Lending& a);
-	bool operator != ( Lending& a) { return !(a==*this); }
+	bool operator == (Lending& a);
+	bool operator != (Lending& a) { return !(a == *this); }
 	bool operator < (Lending& a);
-	bool operator <= (Lending& a) { return (a == *this || a < *this); }
-	bool operator > (Lending& a) { return !(a <= *this); }
-	bool operator >= ( Lending& a) { return !(a < *this); }
+	bool operator <= (Lending& a) { return (a == *this || *this < a); }
+	bool operator > (Lending& a) { return !(*this <= a); }
+	bool operator >= (Lending& a) { return !(*this < a); }
 
 
 	friend istream& operator >>(istream& is, Lending& l)

@@ -465,13 +465,13 @@ public:
 template <typename T>
 T* BTree<T>::search(BNode<T> *p, T x)
 {
-	if(p->searchInNode(x))
-	return &x;
+	if (p->searchInNode(x))
+		return &x;
 	if (p->nsons != 0)
 	{
 		for (int i = 0; i < p->nsons - 1; i++)
 		{
-			return   search(p->Son[i],x);
+			return   search(p->Son[i], x);
 		}
 	}
 }
@@ -483,7 +483,7 @@ BNode<T>* BTree<T>::printName(BNode<T> *t, string name)
 	{
 		for (int i = 0; i < t->nsons - 1; i++)
 		{
-			printName(t->Son[i],name);
+			printName(t->Son[i], name);
 			if ((t->nkeys > i) && (t->Key[i]->getName() == name))
 				cout << t->Key[i] << ",";
 		}
@@ -496,18 +496,18 @@ BNode<T>* BTree<T>::printName(BNode<T> *t, string name)
 template<typename T>
 void BTree<T>::printBetween(BNode<T> *t, T a, T b)
 {
-	if (t->nsons != 0)
+	if (t->Son[0] != NULL)
 	{
-		for (int i = 0; i < t->nsons - 1; i++)
+		for (int i = 0; i < M - 1; i++)
 		{
-			printBetween(t->Son[i],a,b);
-			if ((t->nkeys > i)&&(t->Key[i]>=a)&& (t->Key[i] <= b))
-				cout << t->Key[i] << ",";
+			printBetween(t->Son[i], a, b);
+			if ((t->Key[i] >= a) && (t->Key[i] <= b))
+				cout << t->Key[i];
 		}
 	}
-	for (int i = 0; i < t->nkeys - 1; i++)
+	for (int i = 0; i < t->nkeys; i++)
 		if ((t->Key[i] >= a) && (t->Key[i] <= b))
-			cout << t->Key[i] << ",";
+			cout << t->Key[i];
 }
 
 
@@ -516,13 +516,14 @@ void BTree<T>::deleteSubTree(BNode<T> *t)
 {
 	if (t->Son[0] != NULL)
 	{
-		for (int i = 0; i < t->nsons - 1; i++)
+		for (int i = 0; i < M - 1; i++)
 		{
-			deleteSubTree(t->Son[i]);
+			if (t->Son[i] != NULL)
+				deleteSubTree(t->Son[i]);
 		}
 	}
 
-	if(t->Son)
+	if (t->Son[0])
 		delete[] t->Son;
 	delete[] t->Key;
 	delete t;
@@ -534,17 +535,20 @@ void BTree<T>::deleteSubTree(BNode<T> *t)
 template <typename T>
 void BTree<T>::printSubTree(BNode<T> *t)
 {
-	if (t->nsons != 0)
+	if (t->Son[0] != NULL)
 	{
-		for (int i = 0; i < t->nsons - 1; i++)
+		for (int i = 0; i < M - 1; i++)
 		{
-			printSubTree(t->Son[i]);
-			if(t->nkeys>i)
-				cout << t->Key[i] << ",";
+			if (t->Son[i] != NULL)
+			{
+				printSubTree(t->Son[i]);
+				cout << t->Key[i];
+			}
+
 		}
 	}
-	for (int i = 0; i < t->nkeys - 1; i++)
-		cout << t->Key[i] << ",";
+	for (int i = 0; i < t->nkeys; i++)
+		cout << t->Key[i];
 }
 
 
