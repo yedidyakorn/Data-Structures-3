@@ -13,7 +13,7 @@ class Lending
 public:
 	Lending();
 	~Lending();
-	void set_date(string date) { _date = date; }
+	void set_date(string date);
 	string getName() { return _name; }
 
 

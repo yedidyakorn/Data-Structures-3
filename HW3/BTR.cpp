@@ -479,18 +479,18 @@ T* BTree<T>::search(BNode<T> *p, T x)
 template<typename T>
 BNode<T>* BTree<T>::printName(BNode<T> *t, string name)
 {
-	if (t->nsons != 0)
+	if (t->Son[0] != NULL)
 	{
-		for (int i = 0; i < t->nsons - 1; i++)
+		for (int i = 0; i < M - 1; i++)
 		{
 			printName(t->Son[i], name);
-			if ((t->nkeys > i) && (t->Key[i]->getName() == name))
-				cout << t->Key[i] << ",";
+			if ((t->Key[i]->getName() == name))
+				cout << t->Key[i];
 		}
 	}
-	for (int i = 0; i < t->nkeys - 1; i++)
+	for (int i = 0; i < t->nkeys; i++)
 		if ((t->Key[i]->getName() == name))
-			cout << t->Key[i] << ",";
+			cout << t->Key[i];
 }
 
 template<typename T>
@@ -523,11 +523,12 @@ void BTree<T>::deleteSubTree(BNode<T> *t)
 		}
 	}
 
-	if (t->Son[0])
-		delete[] t->Son;
-	delete[] t->Key;
+	//if(t->Son[0]!=NULL)
+	//	delete[] t->Son;
+	////for(int i=0;i<t->nkeys;i++)
+	////	delete t->Key[i];
+	//delete[] t->Key;
 	delete t;
-	return;
 }
 
 

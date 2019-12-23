@@ -11,6 +11,22 @@ Lending::~Lending()
 {
 }
 
+void Lending::set_date(string date)
+{
+	if (date.length() > 11)
+	{
+		cout << "error ";
+		return;
+		if ((date.substr(0, 4)) < (char*)1900 || date.substr(0, 4) > (char*)2100 || date.substr(5, 2) < (char*)1 || date.substr(5, 2) > (char*)12)
+		{
+			cout << "error ";
+			return;
+		}
+	}
+	_date = date;
+	
+}
+
 bool Lending::operator == (Lending & a)
 {
 	return (_code == a._code&& _date == a._date && _id == a._id && _name == a._name);
