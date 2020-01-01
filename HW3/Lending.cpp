@@ -1,6 +1,11 @@
+/*
+File: Lending.cpp
+Description: Lending class
+Course: Data structres
+Exercise 3
+Author: Yedidya Korn-203304084 & David Abelo-208764340
+*/
 #include "Lending.h"
-
-
 
 Lending::Lending()
 {
@@ -11,18 +16,10 @@ Lending::~Lending()
 {
 }
 
-bool Lending::set_date(string date)
+bool Lending::set_date(string date)		//sets date if legth is vailed
 {
 	if (date.length() > 11||date.length()<9)
-	{
 		return false;
-
-		//if ((date.substr(0, 4)) < (char*)1900 || date.substr(0, 4) > (char*)2100 || date.substr(5, 2) < (char*)1 || date.substr(5, 2) > (char*)12)
-		//{
-		//	cout << "error ";
-		//	throw "error ";
-		//}
-	}
 	_date = date;
 	return true;
 	

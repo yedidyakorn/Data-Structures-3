@@ -1,3 +1,10 @@
+/*
+File: BTree.cpp
+Description: main B tree
+Course: Data structres
+Exercise 3
+Author: Yedidya Korn-203304084 & David Abelo-208764340
+*/
 #include <iostream>
 #include <string>
 #include <list>
@@ -51,7 +58,7 @@ int main()
 			cin >> str;
 			str1 = str.substr(0, str.length() - 1); //before date
 			str2 = str + '*'; //after date
-			if(l1.set_date(str1) && l2.set_date(str2))
+			if(l1.set_date(str1) && l2.set_date(str2))	//checks if date is valied
 				bt.printBetween(l1, l2);
 			break;
 		case '5':cout << "bye "; break;

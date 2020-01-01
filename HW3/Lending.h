@@ -1,3 +1,10 @@
+/*
+File: Lending.h
+Description: Lending class
+Course: Data structres
+Exercise 3
+Author: Yedidya Korn-203304084 & David Abelo-208764340
+*/
 #include<string>
 #include<iostream>
 

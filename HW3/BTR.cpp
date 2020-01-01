@@ -1,3 +1,10 @@
+/*
+File: BTR.cpp
+Description: B tree tamplate (node and tree)
+Course: Data structres
+Exercise 3
+Author: Yedidya Korn-203304084 & David Abelo-208764340
+*/
 #pragma once
 #include <iostream>
 #include <string>
@@ -462,8 +469,8 @@ public:
 };
 
 
-template <typename T>
-T* BTree<T>::search(BNode<T> *p, T x)
+template <typename T>	
+T* BTree<T>::search(BNode<T> *p, T x)		//search for key
 {
 	if (p->searchInNode(x))
 		return &x;
@@ -477,7 +484,7 @@ T* BTree<T>::search(BNode<T> *p, T x)
 }
 
 template<typename T>
-BNode<T>* BTree<T>::printName(BNode<T> *t, string name)
+BNode<T>* BTree<T>::printName(BNode<T> *t, string name)		//bounos- prints acording to name
 {
 	if (t->Son[0] != NULL)
 	{
@@ -494,7 +501,7 @@ BNode<T>* BTree<T>::printName(BNode<T> *t, string name)
 }
 
 template<typename T>
-void BTree<T>::printBetween(BNode<T> *t, T a, T b)
+void BTree<T>::printBetween(BNode<T> *t, T a, T b)		//prints between two keys
 {
 	if (t->Son[0] != NULL)
 	{
@@ -512,7 +519,7 @@ void BTree<T>::printBetween(BNode<T> *t, T a, T b)
 
 
 template <typename T>
-void BTree<T>::deleteSubTree(BNode<T> *t)
+void BTree<T>::deleteSubTree(BNode<T> *t)		//deletes sub tree
 {
 	if (t->Son[0] != NULL)
 	{
@@ -523,18 +530,13 @@ void BTree<T>::deleteSubTree(BNode<T> *t)
 		}
 	}
 
-	//if(t->Son[0]!=NULL)
-	//	delete[] t->Son;
-	////for(int i=0;i<t->nkeys;i++)
-	////	delete t->Key[i];
-	//delete[] t->Key;
 	delete t;
 }
 
 
 
 template <typename T>
-void BTree<T>::printSubTree(BNode<T> *t)
+void BTree<T>::printSubTree(BNode<T> *t)		//prints sub tree
 {
 	if (t->Son[0] != NULL)
 	{
