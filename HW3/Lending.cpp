@@ -11,19 +11,20 @@ Lending::~Lending()
 {
 }
 
-void Lending::set_date(string date)
+bool Lending::set_date(string date)
 {
-	if (date.length() > 11)
+	if (date.length() > 11||date.length()<9)
 	{
-		cout << "error ";
-		return;
-		if ((date.substr(0, 4)) < (char*)1900 || date.substr(0, 4) > (char*)2100 || date.substr(5, 2) < (char*)1 || date.substr(5, 2) > (char*)12)
-		{
-			cout << "error ";
-			return;
-		}
+		return false;
+
+		//if ((date.substr(0, 4)) < (char*)1900 || date.substr(0, 4) > (char*)2100 || date.substr(5, 2) < (char*)1 || date.substr(5, 2) > (char*)12)
+		//{
+		//	cout << "error ";
+		//	throw "error ";
+		//}
 	}
 	_date = date;
+	return true;
 	
 }
 
@@ -63,7 +64,7 @@ bool Lending::operator < (Lending & a)
 		}
 	}
 
-	if (_id != a._id)
-		return _id < a._id;
-	return _code < a._code;
+	if (_code != a._code)
+		return _code < a._code;
+	return _id < a._id;
 }

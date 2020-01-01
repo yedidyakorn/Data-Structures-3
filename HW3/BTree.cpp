@@ -51,9 +51,8 @@ int main()
 			cin >> str;
 			str1 = str.substr(0, str.length() - 1); //before date
 			str2 = str + '*'; //after date
-			l1.set_date(str1);
-			l2.set_date(str2);
-			bt.printBetween(l1, l2);
+			if(l1.set_date(str1) && l2.set_date(str2))
+				bt.printBetween(l1, l2);
 			break;
 		case '5':cout << "bye "; break;
 		default: cout << "error ";  break;
